@@ -66,12 +66,48 @@ header nav ul li.active {
 }
 .showcase-container .grid {
 	width:100%;
+	position: relative;
+	cursor: pointer;
 }
 .showcase-container .grid img {
 	display: block;
 	border: 0;
 	width:100%;
 	height:100%;
+}
+.showcase-container .grid.active .overlay {
+	height: 100%;
+}
+.showcase-container .grid.active .overlay .title,
+.showcase-container .grid.active .overlay .icon {
+	margin-top:200px;
+}
+.overlay {
+	position: absolute;
+	width: 100%;
+	background:rgba(68,68,68,0.8);
+	bottom:0;
+	left: 0;
+	z-index: 99;
+}
+.overlay .title {
+	display: inline-block;
+	width: 74%;
+	font-family:'Oswald', sans-serif;
+	text-transform: uppercase;
+	font-weight: normal;
+	font-size: 30px;
+	line-height: 1.3;
+	color:#FFF;
+	padding: 2% 3%;
+}
+.overlay .icon {
+	position: absolute;
+	display: inline-block;
+	width: 17%;
+	padding: 4% 3% 0% 0%;
+	text-align: right;
+	font-size: 44px;
 }
 footer {
 	width: auto;
@@ -127,6 +163,20 @@ footer {
 		width:50%;
 		float:left;
 	}
+	.showcase-container .grid.active .overlay .title,
+	.showcase-container .grid.active .overlay .icon {
+		margin-top:95px;
+	}
+	.overlay .title {
+		width: 74%;
+		font-size: 28px;
+		padding: 2% 3%;
+	}
+	.overlay .icon {
+		width: 17%;
+		font-size: 44px;
+		padding: 5% 3% 0% 0%;
+	}
 }
 
 /* desktop */
@@ -156,6 +206,20 @@ footer {
 		width:33.33%;
 		float:left;
 	}
+	.showcase-container .grid.active .overlay .title,
+	.showcase-container .grid.active .overlay .icon {
+		margin-top:75px;
+	}
+	.overlay .title {
+		width: 74%;
+		font-size: 26px;
+		padding: 2% 3%;
+	}
+	.overlay .icon {
+		width: 17%;
+		font-size: 44px;
+		padding: 4.5% 3% 0% 0%;
+	}
 	
 }
 
@@ -169,6 +233,16 @@ footer {
 	.showcase-container .grid {
 		width:25%;
 	}
+	.overlay .title {
+		width: 74%;
+		font-size: 24px;
+		padding: 2% 3%;
+	}
+	.overlay .icon {
+		width: 17%;
+		font-size: 40px;
+		padding: 5% 3% 0% 0%;
+	}
 	
 }
 
@@ -177,6 +251,16 @@ footer {
 
 	.showcase-container .grid {
 		width:20%;
+	}
+	.overlay .title {
+		width: 74%;
+		font-size: 22px;
+		padding: 2% 3%;
+	}
+	.overlay .icon {
+		width: 17%;
+		font-size: 38px;
+		padding: 4.5% 3% 0% 0%;
 	}
 	
 }
