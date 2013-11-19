@@ -1,15 +1,28 @@
 /* global console */
 
 // GLOBAL FANCYBOX CONFIG VARIABLES
-var FB_PADDING = 0, FB_TOP_RATIO = 0.25;
-	
+var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgba(0,0,0,0.9)";
+
+// WHEN THE PAGE IS LOADED
 $(document).ready(function(){
 
 	$("header nav ul li a").onMenuSelect();
 	$(".showcase-container .grid").onGridHover();
 	$(".showcase-container .grid").onGridClick();
 	
+	$(".dialog-container").dialog({
+		modal:true,
+		autoOpen: false,
+		buttons: {
+			Ok: function() {
+				$(this).dialog("close");
+			}
+		}
+	});
+	
 });
+
+// FUNCTIONS
 
 $.fn.onMenuSelect = function() {
 	this.on("click", function() {
@@ -34,14 +47,16 @@ $.fn.onGridClick = function() {
 		var sbttl = $(this).find("img").attr("data-subtitle");
 		var vsrc = $(this).find("img").attr("data-src");
 		
-		console.log(sbttl);
-		
-		if($(this).hasClass("video")) {
-			$(this).getVideo(ttl,sbttl,vsrc);
+		if (vsrc.length) {
+			if($(this).hasClass("video")) {
+				$(this).getVideo(ttl,sbttl,vsrc);
+			} else {
+				$(this).getVideo(ttl,sbttl,vsrc);
+			}
 		} else {
-			$(this).getVideo(ttl,sbttl,vsrc);
+			$(this).showMessage("No Source Found!","No source was found or specified for this grid.");
 		}
-
+		
 	});
 };
 
@@ -64,8 +79,8 @@ $.fn.getVideo = function(videoTitle,videoSubtitle,videoSrc) {
 		helpers: {
 			title: null,
 			overlay: {
-				closeClick: false,
-				css: {"background":"rgba(0,0,0, 0.9)"}
+				closeClick: FB_CLOSE_CLICK,
+				css: {"background":FB_OL_BG}
 			},
 			media: true
 		},
@@ -73,4 +88,10 @@ $.fn.getVideo = function(videoTitle,videoSubtitle,videoSrc) {
 			this.inner.before("<h2>"+this.title+"</h2><h3>"+videoSubtitle+"</h3>");
 		}
 	});
+};
+
+$.fn.showMessage = function(ttl,msg) {
+	$(".dialog-container").dialog({title:ttl});
+	$(".dialog-container").dialog("open");
+	$(".dialog-container").html(msg);
 };
