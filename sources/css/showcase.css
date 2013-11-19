@@ -160,7 +160,7 @@ footer {
 	}
 	header nav ul li a,
 	header nav ul li a:visited {
-		padding: 10px 7px 10px 7px;
+		padding: 10px 7px 8px 7px;
 	}
 	.showcase-container {
 		float: left;
@@ -204,7 +204,7 @@ footer {
 	}
 	header nav ul li a,
 	header nav ul li a:visited {
-		padding: 10px 15px;
+		padding: 10px 15px 8px 15px;;
 	}
 	header button.mobile-btn {
 		display: none;

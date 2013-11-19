@@ -39,7 +39,7 @@ $.fn.onMenuSelect = function() {
 
 $.fn.onGridHover = function() {
 	this.hover(function() {
-		$(this).find(".overlay").hide().fadeIn(500);
+		//$(this).find(".overlay").hide().fadeIn(500);
 		$(this).toggleClass("active").next().stop(true,true);
 	});
 };
@@ -52,10 +52,18 @@ $.fn.onGridClick = function() {
 		var vsrc = $(this).find("img").attr("data-src");
 		
 		if (vsrc.length) {
-			if($(this).hasClass("video")) {
+			if($(this).hasClass("video")||$(this).hasClass("animation")) {
 				$(this).getVideo(ttl,sbttl,vsrc);
-			} else {
-				$(this).getVideo(ttl,sbttl,vsrc);
+			} else if ($(this).hasClass("sound")||$(this).hasClass("music")) {
+				$(this).getAudio(ttl,sbttl,vsrc);
+			} else if ($(this).hasClass("print")||$(this).hasClass("infographic")||$(this).hasClass("illustration")||$(this).hasClass("mobile")) {
+				$(this).getImage(ttl,sbttl,vsrc);
+			} else if ($(this).hasClass("web")) {
+				$(this).getWeb(ttl,sbttl,vsrc);
+			} else if ($(this).hasClass("document")) {
+				$(this).getDoc(ttl,sbttl,vsrc);
+			} else if ($(this).hasClass("presentation")) {
+				$(this).getPresentation(ttl,sbttl,vsrc);
 			}
 		} else {
 			$(this).showMessage("No Source Found!","No source was found or specified for this item. Please double check the XML for "+ttl+".");
@@ -64,21 +72,22 @@ $.fn.onGridClick = function() {
 	});
 };
 
-$.fn.getVideo = function(videoTitle,videoSubtitle,videoSrc) {
+$.fn.getVideo = function(ttl,sbttl,src) {
 
-	var vidWidth = 640, vidHeight = 360;
+	var w = 640, h = 360;
 	
-	if (videoSrc.indexOf("mediastreamer") >= 0) {
-		vidHeight = 410;
+	if (src.indexOf("mediastreamer") >= 0) {
+		h = 410;
 	}
 	
 	$.fancybox({
-		href:videoSrc,
-		title:videoTitle,
+		href:src,
+		title:ttl,
 		padding: FB_PADDING,
 		topRatio: FB_TOP_RATIO,
-		width: vidWidth,
-		height: vidHeight,
+		width: w,
+		height: h,
+		minHeight: h,
 		type: "iframe",
 		helpers: {
 			title: null,
@@ -89,7 +98,131 @@ $.fn.getVideo = function(videoTitle,videoSubtitle,videoSrc) {
 			media: true
 		},
 		afterLoad: function() {
-			this.inner.before("<h2>"+this.title+"</h2><h3>"+videoSubtitle+"</h3>");
+			this.inner.before("<h2>"+this.title+"</h2><h3>"+sbttl+"</h3>");
+		}
+	});
+};
+
+$.fn.getAudio = function(ttl,sbttl,src) {
+
+	var w = 390, h = 275;
+	
+	$.fancybox({
+		href:src,
+		title:ttl,
+		padding: FB_PADDING,
+		topRatio: FB_TOP_RATIO,
+		width: w,
+		height: h,
+		type: "iframe",
+		helpers: {
+			title: null,
+			overlay: {
+				closeClick: FB_CLOSE_CLICK,
+				css: {"background":FB_OL_BG}
+			}
+		},
+		afterLoad: function() {
+			this.inner.before("<h2>"+this.title+"</h2><h3>"+sbttl+"</h3>");
+		}
+	});
+};
+
+$.fn.getImage = function(ttl,sbttl,src) {
+	
+	var fitView = true;
+	
+	if ($(this).hasClass("infographic")) {
+		fitView = false;
+	}
+	
+	$.fancybox({
+		href:src,
+		title:ttl,
+		fitToView: fitView,
+		padding: FB_PADDING,
+		topRatio: FB_TOP_RATIO,
+		helpers: {
+			title: null,
+			overlay: {
+				closeClick: FB_CLOSE_CLICK,
+				css: {"background":FB_OL_BG}
+			}
+		},
+		afterLoad: function() {
+			this.inner.before("<h2>"+this.title+"</h2><h3>"+sbttl+"</h3>");
+		}
+	});
+};
+
+$.fn.getWeb = function(ttl,sbttl,src) {
+	
+	$.fancybox({
+		href:src,
+		title:ttl,
+		type: "iframe",
+		iframe: {
+			scrolling: "auto"
+		},
+		padding: FB_PADDING,
+		topRatio: FB_TOP_RATIO,
+		helpers: {
+			title: null,
+			overlay: {
+				closeClick: FB_CLOSE_CLICK,
+				css: {"background":FB_OL_BG}
+			}
+		},
+		afterLoad: function() {
+			this.inner.before("<h2>"+this.title+"</h2><h3>"+sbttl+"</h3>");
+		}
+	});
+};
+
+$.fn.getDoc = function(ttl,sbttl,src) {
+	
+	$.fancybox({
+		href:src,
+		title:ttl,
+		type: "iframe",
+		iframe: {
+			scrolling: "auto",
+			preload:false
+		},
+		padding: FB_PADDING,
+		topRatio: FB_TOP_RATIO,
+		helpers: {
+			title: null,
+			overlay: {
+				closeClick: FB_CLOSE_CLICK,
+				css: {"background":FB_OL_BG}
+			}
+		},
+		afterLoad: function() {
+			this.inner.before("<h2>"+this.title+"</h2><h3>"+sbttl+"</h3>");
+		}
+	});
+};
+
+$.fn.getPresentation = function(ttl,sbttl,src) {
+	
+	$.fancybox({
+		href:src,
+		title:ttl,
+		type: "iframe",
+		width:900,
+		height:680,
+		padding: FB_PADDING,
+		topRatio: FB_TOP_RATIO,
+		helpers: {
+			title: null,
+			overlay: {
+				closeClick: FB_CLOSE_CLICK,
+				css: {"background":FB_OL_BG}
+			}
+		},
+		afterLoad: function() {
+			this.inner.before("<h2>"+this.title+"</h2><h3>"+sbttl+"</h3>");
 		}
 	});
 };
