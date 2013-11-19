@@ -12,7 +12,11 @@ $(document).ready(function(){
 	
 	$(".dialog-container").dialog({
 		modal:true,
+		minWidth: 301,
+		minHeight: 200,
 		autoOpen: false,
+		resizable: false,
+		draggable: false,
 		buttons: {
 			Ok: function() {
 				$(this).dialog("close");
@@ -54,7 +58,7 @@ $.fn.onGridClick = function() {
 				$(this).getVideo(ttl,sbttl,vsrc);
 			}
 		} else {
-			$(this).showMessage("No Source Found!","No source was found or specified for this grid.");
+			$(this).showMessage("No Source Found!","No source was found or specified for this item. Please double check the XML for "+ttl+".");
 		}
 		
 	});

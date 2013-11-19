@@ -172,6 +172,9 @@
 .ui-button:active {
 	text-decoration: none;
 }
+.ui-button:focus {
+	outline: none;
+}
 /* to make room for the icon, a width needs to be set here */
 .ui-button-icon-only {
 	width: 2.2em;
@@ -266,7 +269,7 @@ button.ui-button::-moz-focus-inner {
 	outline: 0;
 }
 .ui-dialog .ui-dialog-titlebar {
-	padding: .4em 1em;
+	padding: .3em .7em;
 	position: relative;
 }
 .ui-dialog .ui-dialog-title {
@@ -291,6 +294,8 @@ button.ui-button::-moz-focus-inner {
 	border: 0;
 	padding: .5em 1em;
 	background: none;
+	font-size: 14px;
+	font-family: 'Open Sans', sans-serif;
 	overflow: auto;
 }
 .ui-dialog .ui-dialog-buttonpane {
@@ -299,12 +304,14 @@ button.ui-button::-moz-focus-inner {
 	background-image: none;
 	margin-top: .5em;
 	padding: .3em 1em .5em .4em;
+	border: 0;
 }
 .ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
 	float: right;
 }
 .ui-dialog .ui-dialog-buttonpane button {
-	margin: .5em .4em .5em 0;
+	/* margin: .5em .4em .5em 0; */
+	text-transform: uppercase;
 	cursor: pointer;
 }
 .ui-dialog .ui-resizable-se {
@@ -335,7 +342,7 @@ button.ui-button::-moz-focus-inner {
 	font-size: 1em;
 }
 .ui-widget-content {
-	border: 1px solid #dddddd;
+	border: 1px solid #000000;
 	background: #f2f5f7 url(images/ui-bg_highlight-hard_100_f2f5f7_1x100.png) 50% top repeat-x;
 	color: #362b36;
 }
@@ -357,15 +364,17 @@ button.ui-button::-moz-focus-inner {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-	border: 1px solid #aed0ea;
-	background: #d7ebf9 url(images/ui-bg_glass_80_d7ebf9_1x400.png) 50% 50% repeat-x;
-	font-weight: bold;
-	color: #2779aa;
+	border: 1px solid #3FA1A1;
+	background-color: #58ecec;
+	color: #2b2b2b;
+}
+.ui-widget-header .ui-state-default {
+	display: none;
 }
 .ui-state-default a,
 .ui-state-default a:link,
 .ui-state-default a:visited {
-	color: #2779aa;
+	color: #2b2b2b;
 	text-decoration: none;
 }
 .ui-state-hover,
@@ -374,10 +383,9 @@ button.ui-button::-moz-focus-inner {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-	border: 1px solid #74b2e2;
-	background: #e4f1fb url(images/ui-bg_glass_100_e4f1fb_1x400.png) 50% 50% repeat-x;
-	font-weight: bold;
-	color: #0070a3;
+	border: 1px solid #3FA1A1;
+	background-color: #3FA1A1;
+	color: #f6f6f6;
 }
 .ui-state-hover a,
 .ui-state-hover a:hover,
@@ -698,8 +706,8 @@ button.ui-button::-moz-focus-inner {
 
 /* Overlays */
 .ui-widget-overlay {
-	background: #eeeeee url(images/ui-bg_diagonals-thick_90_eeeeee_40x40.png) 50% 50% repeat;
-	opacity: .8;
+	background-color: #444;
+	opacity: .9;
 	filter: Alpha(Opacity=80);
 }
 .ui-widget-shadow {
