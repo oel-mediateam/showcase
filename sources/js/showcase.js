@@ -9,7 +9,7 @@ $(document).ready(function(){
 	$("header nav ul li a").onMenuSelect();
 	
 	$("div.mobile-nav").on("click",function(){
-		$("nav.mobile-nav").slideToggle();
+		$("nav.mobile-nav").slideToggle("slow");
 	});
 	
 	
