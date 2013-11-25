@@ -26,15 +26,17 @@ header {
 	padding:0 2%;
 }
 header div.logo {
-	width: 100%;
+	width: auto;
 	line-height: 0;
+	float:left;
 }
 header div.logo a {
 	display: block;
 	width: 203px;
-	margin: 0px auto;
+	margin: 0px;
 }
 header nav {
+	display: none;
 	width:100%;
 	text-align: center;
 }
@@ -64,8 +66,48 @@ header nav ul li a:visited {
 header nav ul li.active {
 	background-color: #3FA1A1;
 }
-.showcase-container {
-	
+nav.mobile-nav {
+	display: none;
+	width:100%;
+	text-align: center;
+	margin-bottom: 16px;
+	float: left;
+	clear: both;
+}
+nav.mobile-nav ul li {
+	display: block;
+}
+nav.mobile-nav ul li a,
+nav.mobile-nav ul li a:visited {
+	text-align: left;
+}
+div.mobile-nav {
+	float: right;
+	margin-top: 28px;
+}
+div.mobile-nav button {
+	padding: 9px 10px;
+	background-color: transparent;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	cursor: pointer;
+}
+div.mobile-nav button:hover {
+	background:rgba(0,0,0,.25);
+}
+div.mobile-nav button:focus {
+	outline: none;
+}
+div.mobile-nav button .icon-bar {
+	display: block;
+	width: 26px;
+	height: 5px;
+	border-radius: 1px;
+	background-color: #3FA1A1;
+	margin-bottom: 3px;
+}
+div.mobile-nav button .icon-bar:last-child {
+	margin-bottom: 0px;
 }
 .showcase-container .grid {
 	width:100%;
@@ -161,6 +203,12 @@ footer {
 	header nav ul li a,
 	header nav ul li a:visited {
 		padding: 10px 7px 8px 7px;
+	}
+	div.mobile-nav {
+		display: none;
+	}
+	nav.mobile-nav {
+		display: none;
 	}
 	.showcase-container {
 		float: left;
