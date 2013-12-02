@@ -126,7 +126,7 @@ div.mobile-nav button .icon-bar:last-child {
 }
 .showcase-container .grid.active .overlay .title,
 .showcase-container .grid.active .overlay .icon {
-	margin-top:200px;
+	margin-top:25%;
 }
 .overlay {
 	position: absolute;
@@ -142,7 +142,7 @@ div.mobile-nav button .icon-bar:last-child {
 	font-family:'Oswald', sans-serif;
 	text-transform: uppercase;
 	font-weight: normal;
-	font-size: 30px;
+	font-size: 170%;
 	line-height: 1.3;
 	color:#3FA1A1;
 	padding: 2% 3%;
