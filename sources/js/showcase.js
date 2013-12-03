@@ -5,22 +5,17 @@ var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgb
 
 // WHEN THE PAGE IS LOADED
 $(document).ready(function(){
-
-	$("header nav ul li a").onMenuSelect();
+	
+	$(this).readXML();
 	
 	$("div.mobile-nav").on("click",function(){
 		$("nav.mobile-nav").slideToggle("slow");
 	});
 	
-	
-	
-	$(".showcase-container .grid").onGridHover();
-	$(".showcase-container .grid").onGridClick();
-	
 	$(".dialog-container").dialog({
 		modal:true,
-		minWidth: 301,
-		minHeight: 200,
+		minWidth: 400,
+		minHeight: 150,
 		autoOpen: false,
 		resizable: false,
 		draggable: false,
@@ -39,6 +34,105 @@ $(document).ready(function(){
 
 // FUNCTIONS
 
+$.fn.readXML = function() {
+	
+	// AJAX setup
+    $.ajaxSetup({
+        url: 'assets/showcase.xml',
+        dataType: 'xml',
+        accepts: 'xml',
+        content: 'xml',
+        contentType: 'xml; charset="utf-8"',
+        cache: false
+    });
+    
+    // Encoding and overiding XML data via ajax requesting
+    $.ajax({
+        type: 'get',
+        beforeSend: function (xhr) {
+            xhr.overrideMimeType("xml; charset=utf-8");
+            xhr.setRequestHeader("Accept", "text/xml");
+        },
+        success: function (xml) {
+            $(this).setupXML(xml);
+        },
+        error: function (xhr, exception) {
+            $(this).displayError(xhr.status, exception);
+        }
+    });
+	
+};
+
+$.fn.setupXML = function(xml) {
+	var CATEGORY = $(xml).find("category").find("name");
+	var ITEM = $(xml).find("item");
+	
+	if (CATEGORY.length) {
+		$("header nav ul").html("<li class=\"active\"><a data-cat=\"0\" href=\"#all\">All</a></li>");
+		CATEGORY.each(function(){
+			$("header nav ul").append("<li><a data-cat=\""+$(this).attr("id")+"\" href=\"javascript:void(0)\">"+$(this).text()+"</a></li>");
+		});
+		
+		$("header nav ul li a").onMenuSelect();
+		
+	} else {
+		$("header nav ul").hide();
+		$("div.mobile-nav").hide();
+	}
+	
+	if (ITEM.length) {
+		ITEM.each(function(){
+			var type = $(this).attr("type");
+			var cat = $(this).attr("category");
+			var title1 = $(this).find("title1").text();
+			var title2 = $(this).find("title2").text();
+			var subtitle = $(this).find("subtitle").text();
+			var thumb = $(this).find("thumb").text();
+			var source = $(this).find("source").text();
+			
+			$(".showcase-container").append("<div class=\"grid " + type + "\" data-cat=\"" + cat + "\"><img src=\"assets/thumbs/" + thumb + "\" alt=\"" + title1 + "<br />" + title2 + "\" data-subtitle=\"" + subtitle + "\" data-src=\"" + source + "\" /><div class=\"overlay\"><div class=\"title\">" + title1 + "<br />" + title2 + "</div><div class=\"icon\"><span class=\"icon-"+type+"\"></span></div></div></div>");
+			
+		});
+		
+		$(".showcase-container .grid").onGridHover();
+		$(".showcase-container .grid").onGridClick();
+		
+	}
+	
+};
+
+$.fn.displayError = function(status, exception) {
+	var statusMsg, exceptionMsg;
+
+    // assign status
+    if (status === 0) {
+        statusMsg = 'Error 0 - No network connection.';
+    } else if (status === 404) {
+        statusMsg = 'Error 404 - Requested XML not found.';
+    } else if (status === 406) {
+        statusMsg = 'Error 406 - Not acceptable error.';
+    } else if (status === 500) {
+        statusMsg = 'Error 500 - Internal Server Error.';
+    } else {
+        statusMsg = 'Uncaught error';
+    }
+
+    // assign error
+    if (exception === 'parsererror') {
+        exceptionMsg = 'Requested XML parse failed.';
+    } else if (exception === 'timeout') {
+        exceptionMsg = 'Time out error.';
+    } else if (exception === 'abort') {
+        exceptionMsg = 'Ajax request aborted.';
+    } else if (exception === "error") {
+        exceptionMsg = 'HTTP / URL Error.';
+    } else {
+        exceptionMsg = (status.responseText);
+    }
+
+    $(this).showMessage(statusMsg,exceptionMsg);
+};
+
 $.fn.onWindowResize = function() {
 	this.resize(function() {
 		var winWidth = $(this).innerWidth() + 15;
@@ -56,10 +150,28 @@ $.fn.onWindowResize = function() {
 
 $.fn.onMenuSelect = function() {
 	this.on("click", function() {
+	
+		var catId = $(this);
+	
 		$(this.parentNode.parentNode.childNodes).each(function() {
 			$(this).removeClass("active");
 		});
+		
 		$(this.parentNode).addClass("active");
+		
+		if (catId.attr("data-cat") !== "0") {
+			$(".grid").each(function() {
+				if ($(this).attr("data-cat") !== catId.attr("data-cat")) {
+					$(this).fadeOut();
+				} else {
+					$(this).delay(500).fadeIn()
+				}
+			});
+		} else {
+			$(".grid").each(function() {
+				$(this).fadeIn();
+			});
+		}
 		
 		if ($(this.parentNode.parentNode.parentNode).hasClass("mobile-nav")) {
 			$("nav.mobile-nav").slideToggle(1000,function() {
@@ -69,6 +181,9 @@ $.fn.onMenuSelect = function() {
 		}
 		
 	});
+	
+	return false;
+	
 };
 
 $.fn.onGridHover = function() {
