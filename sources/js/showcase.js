@@ -1,4 +1,3 @@
-/* global console */
 
 // GLOBAL FANCYBOX CONFIG VARIABLES
 var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgba(0,0,0,0.9)";
@@ -68,7 +67,7 @@ $.fn.setupXML = function(xml) {
 	var ITEM = $(xml).find("item");
 	
 	if (CATEGORY.length) {
-		$("header nav ul").html("<li class=\"active\"><a data-cat=\"0\" href=\"#all\">All</a></li>");
+		$("header nav ul").html("<li class=\"active\"><a data-cat=\"0\" href=\"javascript:void(0)\">All</a></li>");
 		CATEGORY.each(function(){
 			$("header nav ul").append("<li><a data-cat=\""+$(this).attr("id")+"\" href=\"javascript:void(0)\">"+$(this).text()+"</a></li>");
 		});
@@ -96,7 +95,7 @@ $.fn.setupXML = function(xml) {
 		
 		$(".showcase-container .grid").onGridHover();
 		$(".showcase-container .grid").onGridClick();
-		
+	
 	}
 	
 };
@@ -164,7 +163,7 @@ $.fn.onMenuSelect = function() {
 				if ($(this).attr("data-cat") !== catId.attr("data-cat")) {
 					$(this).fadeOut();
 				} else {
-					$(this).delay(500).fadeIn()
+					$(this).delay(500).fadeIn();
 				}
 			});
 		} else {
