@@ -219,7 +219,7 @@ footer {
 		display: none;
 	}
 	.showcase-container {
-		float: left;
+		/* float: left; */
 		clear: both;
 	}
 	.showcase-container .grid {
