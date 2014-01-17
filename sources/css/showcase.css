@@ -118,7 +118,11 @@ div.mobile-nav button .icon-bar:last-child {
 	display: block;
 	border: 0;
 	width:100%;
-	height:100%;
+}
+@-moz-document url-prefix() { 
+	.showcase-container .grid img {
+		height:100%;
+	}
 }
 .showcase-container .grid.active .overlay {
 	height: 100%;
