@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <showcase>
 	
-	<category>
-		<name id="1">Animation</name>
-		<name id="2">Course Content</name>
-		<name id="3">Marketing</name>
-		<name id="4">Narrated Lectures</name>
-	</category>
-	
 	<!--
 		TYPES:
 		video, animation, sound, music, print, infographic, illustration, mobile, web, document, presentation
@@ -20,6 +13,13 @@
 		- Document is pdf.
 		- Presentation is Storybook+ player fro Web/MediaStreamer.
 	-->
+	
+	<category>
+		<name id="1">Animation</name>
+		<name id="2">Course Content</name>
+		<name id="3">Marketing</name>
+		<name id="4">Narrated Lectures</name>
+	</category>
 	
 	<item type="video" category="1">
 		<title1>Life is Music</title1>
@@ -82,7 +82,7 @@
 		<title2>by anazei</title2>
 		<subtitle>An Printable Image</subtitle>
 		<thumb>earlydawn.png</thumb>
-		<source>earlydawn.jpg</source>
+		<source>assets/images/earlydawn.jpg</source>
 	</item>
 	
 	<item type="illustration" category="3">
@@ -90,7 +90,7 @@
 		<title2>Children's Day</title2>
 		<subtitle>An Illustration</subtitle>
 		<thumb>childrenday.png</thumb>
-		<source>childrenday.jpg</source>
+		<source>assets/images/childrenday.jpg</source>
 	</item>
 	
 	<item type="infographic" category="3">
@@ -98,7 +98,7 @@
 		<title2>Infographic?</title2>
 		<subtitle>Super long illustration</subtitle>
 		<thumb>infographic.png</thumb>
-		<source>infographic.jpg</source>
+		<source>assets/images/infographic.jpg</source>
 	</item>
 	
 	<item type="mobile" category="3">
@@ -106,7 +106,7 @@
 		<title2>Apple</title2>
 		<subtitle>It is an iPhone</subtitle>
 		<thumb>iphone.png</thumb>
-		<source>iphone.png</source>
+		<source>assets/images/iphone.png</source>
 	</item>
 	
 	<item type="web" category="2">

@@ -4,6 +4,10 @@ var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgb
 
 // WHEN THE PAGE IS LOADED
 $(document).ready(function(){
+
+    if ( $("body").hasClass("smgt") ) {
+        FB_OL_BG = "rgba(225,225,220,0.95)";
+    }
 	
 	$(this).readXML();
 	
@@ -80,6 +84,7 @@ $.fn.setupXML = function(xml) {
 	}
 	
 	if (ITEM.length) {
+	
 		ITEM.each(function(){
 			var type = $(this).attr("type");
 			var cat = $(this).attr("category");

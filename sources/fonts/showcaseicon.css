@@ -18,11 +18,16 @@
 	font-variant: normal;
 	text-transform: none;
 	line-height: 1;
-	color:#3FA1A1;
+	color: #3FA1A1;
 
 	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+
+.smgt [class^="icon-"],
+.smgt [class*=" icon-"] {
+    color: rgb(93,136,40);
 }
 
 .icon-infographic:before {
