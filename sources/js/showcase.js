@@ -36,6 +36,7 @@ $(document).ready(function(){
 
 $.fn.checkTheme = function() {
     
+    var site = "https://mediastreamer.doit.wisc.edu/uwli-ltc/media/showcase/";
     var logoImg = $("div.logo a img");
     var logoSrc, logoAlt;
     
@@ -49,7 +50,7 @@ $.fn.checkTheme = function() {
     }
     
     logoImg.attr({
-        src:logoSrc,
+        src:site+logoSrc,
         alt:logoAlt
     });
     
