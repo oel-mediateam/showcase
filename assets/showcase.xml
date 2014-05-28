@@ -14,6 +14,11 @@
 		- Presentation is Storybook+ player fro Web/MediaStreamer.
 	-->
 	
+	<setup>
+	    <pageTitle>SMGT Showcase</pageTitle>
+	    <theme>smgt</theme>
+	</setup>
+	
 	<category>
 		<name id="1">Animation</name>
 		<name id="2">Course Content</name>

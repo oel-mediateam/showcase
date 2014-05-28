@@ -5,7 +5,6 @@ var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgb
 // WHEN THE PAGE IS LOADED
 $(document).ready(function(){
 
-    $(this).checkTheme();
 	$(this).readXML();
 	
 	$("div.mobile-nav").on("click",function(){
@@ -86,8 +85,15 @@ $.fn.readXML = function() {
 };
 
 $.fn.setupXML = function(xml) {
+
+    var PAGETITLE = $(xml).find("setup").find("pageTitle").text();
+    var THEME = $(xml).find("setup").find("theme").text();
 	var CATEGORY = $(xml).find("category").find("name");
 	var ITEM = $(xml).find("item");
+	
+	$("title").html( PAGETITLE.trim() === "" ? "Showcase" : PAGETITLE );
+	$("body").addClass( THEME.trim() === "" ? "" : THEME );
+	$(this).checkTheme();
 	
 	if (CATEGORY.length) {
 		$("header nav ul").html("<li class=\"active\"><a data-cat=\"0\" href=\"javascript:void(0)\">All</a></li>");
