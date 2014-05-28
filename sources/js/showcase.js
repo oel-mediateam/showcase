@@ -5,10 +5,7 @@ var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgb
 // WHEN THE PAGE IS LOADED
 $(document).ready(function(){
 
-    if ( $("body").hasClass("smgt") ) {
-        FB_OL_BG = "rgba(225,225,220,0.95)";
-    }
-	
+    $(this).checkTheme();
 	$(this).readXML();
 	
 	$("div.mobile-nav").on("click",function(){
@@ -36,6 +33,27 @@ $(document).ready(function(){
 });
 
 // FUNCTIONS
+
+$.fn.checkTheme = function() {
+    
+    var logoImg = $("div.logo a img");
+    var logoSrc, logoAlt;
+    
+    if ($("body").hasClass("smgt")) {
+        FB_OL_BG = "rgba(225,225,220,0.95)";
+        logoSrc = "sources/img/smgt_logo.png";
+        logoAlt = "University of Wisconsin Sustainable Management";
+    } else {
+        logoSrc = "sources/img/uwex_ceoel_logo.png";
+        logoAlt = "University of Wisconsin-Extension divison of Continuing Education, Outreach & and E-Learning";
+    }
+    
+    logoImg.attr({
+        src:logoSrc,
+        alt:logoAlt
+    });
+    
+};
 
 $.fn.readXML = function() {
 	
@@ -153,6 +171,7 @@ $.fn.onWindowResize = function() {
 };
 
 $.fn.onMenuSelect = function() {
+
 	this.on("click", function() {
 	
 		var catId = $(this);
@@ -378,6 +397,7 @@ $.fn.getPresentation = function(ttl,sbttl,src) {
 			this.inner.before("<h2>"+this.title+"</h2><h3>"+sbttl+"</h3>");
 		}
 	});
+	
 };
 
 $.fn.showMessage = function(ttl,msg) {
