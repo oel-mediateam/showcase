@@ -6,11 +6,11 @@ var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgb
 $(document).ready(function(){
 
 	$(this).readXML();
-	
+
 	$("div.mobile-nav").on("click",function(){
 		$("nav.mobile-nav").slideToggle("slow");
 	});
-	
+
 	$(".dialog-container").dialog({
 		modal:true,
 		minWidth: 400,
@@ -24,39 +24,43 @@ $(document).ready(function(){
 			}
 		}
 	});
-	
+
 	$(window).onWindowResize();
 	$("nav.mobile-nav").html($("header nav").html());
 	$("nav.mobile-nav ul li a").onMenuSelect();
-	
+
 });
 
 // FUNCTIONS
 
 $.fn.checkTheme = function() {
-    
+
     var site = "https://mediastreamer.doit.wisc.edu/uwli-ltc/media/showcase/";
     var logoImg = $("div.logo a img");
     var logoSrc, logoAlt;
-    
+
     if ($("body").hasClass("smgt")) {
         FB_OL_BG = "rgba(225,225,220,0.95)";
         logoSrc = "sources/img/smgt_logo.png";
         logoAlt = "University of Wisconsin Sustainable Management";
+    } else if ($("body").hasClass("hwm")) {
+        FB_OL_BG = "rgba(0,101,164,0.9)";
+        logoSrc = "sources/img/hmw_logo.png";
+        logoAlt = "University of Wisconsin Health &amp; Wellness Management";
     } else {
         logoSrc = "sources/img/uwex_ceoel_logo.png";
         logoAlt = "University of Wisconsin-Extension divison of Continuing Education, Outreach & and E-Learning";
     }
-    
+
     logoImg.attr({
         src:site+logoSrc,
         alt:logoAlt
     });
-    
+
 };
 
 $.fn.readXML = function() {
-	
+
 	// AJAX setup
     $.ajaxSetup({
         url: 'assets/showcase.xml',
@@ -66,7 +70,7 @@ $.fn.readXML = function() {
         contentType: 'xml; charset="utf-8"',
         cache: false
     });
-    
+
     // Encoding and overiding XML data via ajax requesting
     $.ajax({
         type: 'get',
@@ -81,7 +85,7 @@ $.fn.readXML = function() {
             $(this).displayError(xhr.status, exception);
         }
     });
-	
+
 };
 
 $.fn.setupXML = function(xml) {
@@ -90,26 +94,26 @@ $.fn.setupXML = function(xml) {
     var THEME = $(xml).find("setup").find("theme").text();
 	var CATEGORY = $(xml).find("category").find("name");
 	var ITEM = $(xml).find("item");
-	
+
 	$("title").html( PAGETITLE.trim() === "" ? "Showcase" : PAGETITLE );
 	$("body").addClass( THEME.trim() === "" ? "" : THEME );
 	$(this).checkTheme();
-	
+
 	if (CATEGORY.length) {
 		$("header nav ul").html("<li class=\"active\"><a data-cat=\"0\" href=\"javascript:void(0)\">All</a></li>");
 		CATEGORY.each(function(){
 			$("header nav ul").append("<li><a data-cat=\""+$(this).attr("id")+"\" href=\"javascript:void(0)\">"+$(this).text()+"</a></li>");
 		});
-		
+
 		$("header nav ul li a").onMenuSelect();
-		
+
 	} else {
 		$("header nav ul").hide();
 		$("div.mobile-nav").hide();
 	}
-	
+
 	if (ITEM.length) {
-	
+
 		ITEM.each(function(){
 			var type = $(this).attr("type");
 			var cat = $(this).attr("category");
@@ -118,16 +122,16 @@ $.fn.setupXML = function(xml) {
 			var subtitle = $(this).find("subtitle").text();
 			var thumb = $(this).find("thumb").text();
 			var source = $(this).find("source").text();
-			
-			$(".showcase-container").append("<div class=\"grid " + type + "\" data-cat=\"" + cat + "\"><img src=\"assets/thumbs/" + thumb + "\" alt=\"" + title1 + "<br />" + title2 + "\" data-subtitle=\"" + subtitle + "\" data-src=\"" + source + "\" /><div class=\"overlay\"><div class=\"title\">" + title1 + "<br />" + title2 + "</div><div class=\"icon\"><span class=\"icon-"+type+"\"></span></div></div></div>");
-			
+
+			$(".showcase-container").append("<div class=\"grid " + type + "\" data-cat=\"" + cat + "\"><img src=\"assets/thumbs/" + thumb + "\" alt=\"" + title1 + " " + title2 + "\" data-subtitle=\"" + subtitle + "\" data-src=\"" + source + "\" /><div class=\"overlay\"><div class=\"title\">" + title1 + "<br />" + title2 + "</div><div class=\"icon\"><span class=\"icon-"+type+"\"></span></div></div></div>");
+
 		});
-		
+
 		$(".showcase-container .grid").onGridHover();
 		$(".showcase-container .grid").onGridClick();
-	
+
 	}
-	
+
 };
 
 $.fn.displayError = function(status, exception) {
@@ -165,30 +169,30 @@ $.fn.displayError = function(status, exception) {
 $.fn.onWindowResize = function() {
 	this.resize(function() {
 		var winWidth = $(this).innerWidth() + 15;
-		
+
 		$("nav.mobile-nav").html($("header nav").html());
-		
+
 		if (winWidth >= 720) {
 			$("nav.mobile-nav").slideUp();
 		} else {
 			$("nav.mobile-nav ul li a").onMenuSelect();
 		}
-		
+
 	});
 };
 
 $.fn.onMenuSelect = function() {
 
 	this.on("click", function() {
-	
+
 		var catId = $(this);
-	
+
 		$(this.parentNode.parentNode.childNodes).each(function() {
 			$(this).removeClass("active");
 		});
-		
+
 		$(this.parentNode).addClass("active");
-		
+
 		if (catId.attr("data-cat") !== "0") {
 			$(".grid").each(function() {
 				if ($(this).attr("data-cat") !== catId.attr("data-cat")) {
@@ -202,18 +206,18 @@ $.fn.onMenuSelect = function() {
 				$(this).fadeIn();
 			});
 		}
-		
+
 		if ($(this.parentNode.parentNode.parentNode).hasClass("mobile-nav")) {
 			$("nav.mobile-nav").slideToggle(1000,function() {
 				$("header nav").html($("nav.mobile-nav").html());
 				$("header nav ul li a").onMenuSelect();
 			});
 		}
-		
+
 	});
-	
+
 	return false;
-	
+
 };
 
 $.fn.onGridHover = function() {
@@ -225,11 +229,11 @@ $.fn.onGridHover = function() {
 
 $.fn.onGridClick = function() {
 	this.click(function() {
-	
-		var ttl = $(this).find("img").attr("alt");
+
+		var ttl = $(this).find("div.title").html();
 		var sbttl = $(this).find("img").attr("data-subtitle");
 		var vsrc = $(this).find("img").attr("data-src");
-		
+
 		if (vsrc.length) {
 			if($(this).hasClass("video")||$(this).hasClass("animation")) {
 				$(this).getVideo(ttl,sbttl,vsrc);
@@ -247,18 +251,18 @@ $.fn.onGridClick = function() {
 		} else {
 			$(this).showMessage("No Source Found!","No source was found or specified for this item. Please double check the XML for "+ttl+".");
 		}
-		
+
 	});
 };
 
 $.fn.getVideo = function(ttl,sbttl,src) {
 
 	var w = 640, h = 360;
-	
+
 	if (src.indexOf("mediastreamer") >= 0) {
 		h = 410;
 	}
-	
+
 	$.fancybox({
 		href:src,
 		title:ttl,
@@ -285,7 +289,7 @@ $.fn.getVideo = function(ttl,sbttl,src) {
 $.fn.getAudio = function(ttl,sbttl,src) {
 
 	var w = 390, h = 275;
-	
+
 	$.fancybox({
 		href:src,
 		title:ttl,
@@ -308,13 +312,13 @@ $.fn.getAudio = function(ttl,sbttl,src) {
 };
 
 $.fn.getImage = function(ttl,sbttl,src) {
-	
+
 	var fitView = true;
-	
+
 	if ($(this).hasClass("infographic")) {
 		fitView = false;
 	}
-	
+
 	$.fancybox({
 		href:src,
 		title:ttl,
@@ -335,7 +339,7 @@ $.fn.getImage = function(ttl,sbttl,src) {
 };
 
 $.fn.getWeb = function(ttl,sbttl,src) {
-	
+
 	$.fancybox({
 		href:src,
 		title:ttl,
@@ -359,7 +363,7 @@ $.fn.getWeb = function(ttl,sbttl,src) {
 };
 
 $.fn.getDoc = function(ttl,sbttl,src) {
-	
+
 	$.fancybox({
 		href:src,
 		title:ttl,
@@ -384,7 +388,7 @@ $.fn.getDoc = function(ttl,sbttl,src) {
 };
 
 $.fn.getPresentation = function(ttl,sbttl,src) {
-	
+
 	$.fancybox({
 		href:src,
 		title:ttl,
@@ -404,7 +408,7 @@ $.fn.getPresentation = function(ttl,sbttl,src) {
 			this.inner.before("<h2>"+this.title+"</h2><h3>"+sbttl+"</h3>");
 		}
 	});
-	
+
 };
 
 $.fn.showMessage = function(ttl,msg) {

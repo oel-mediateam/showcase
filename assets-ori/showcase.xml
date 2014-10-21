@@ -15,13 +15,15 @@
 	-->
 
 	<setup>
-	    <pageTitle>HWM Showcase</pageTitle>
+	    <pageTitle>SMGT Showcase</pageTitle>
 	    <theme>hwm</theme>
 	</setup>
 
 	<category>
-		<name id="1">Course Content</name>
-		<name id="2">About the Program</name>
+		<name id="1">Animation</name>
+		<name id="2">Course Content</name>
+		<name id="3">Marketing</name>
+		<name id="4">Narrated Lectures</name>
 	</category>
 
 	<item type="video" category="1">
@@ -80,7 +82,7 @@
 		<source>https://mediastreamer.doit.wisc.edu/uwli-ltc/media/demos/audio_player/with_playlist/</source>
 	</item>
 
-	<item type="print" category="1">
+	<item type="print" category="3">
 		<title1>Early Dawn</title1>
 		<title2>by anazei</title2>
 		<subtitle>An Printable Image</subtitle>
@@ -88,7 +90,7 @@
 		<source>assets/images/earlydawn.jpg</source>
 	</item>
 
-	<item type="illustration" category="1">
+	<item type="illustration" category="3">
 		<title1>Happy</title1>
 		<title2>Children's Day</title2>
 		<subtitle>An Illustration</subtitle>
@@ -96,7 +98,7 @@
 		<source>assets/images/childrenday.jpg</source>
 	</item>
 
-	<item type="infographic" category="1">
+	<item type="infographic" category="3">
 		<title1>What is an</title1>
 		<title2>Infographic?</title2>
 		<subtitle>Super long illustration</subtitle>
@@ -104,7 +106,7 @@
 		<source>assets/images/infographic.jpg</source>
 	</item>
 
-	<item type="mobile" category="1">
+	<item type="mobile" category="3">
 		<title1>iPhone</title1>
 		<title2>Apple</title2>
 		<subtitle>It is an iPhone</subtitle>
@@ -120,7 +122,7 @@
 		<source>https://mediastreamer.doit.wisc.edu/uwli-ltc/media/documentation/idstyleguide/index.html</source>
 	</item>
 
-	<item type="web" category="1">
+	<item type="web" category="3">
 		<title1>Google Maps</title1>
 		<title2>Research Park Blvd</title2>
 		<subtitle>An embedded map from Google Maps</subtitle>
@@ -136,7 +138,7 @@
 		<source>https://mediastreamer.doit.wisc.edu/uwli-ltc/media/demos/generic_video_player/v3/v3.pdf</source>
 	</item>
 
-	<item type="presentation" category="1">
+	<item type="presentation" category="4">
 		<title1>Storybook+</title1>
 		<title2>Demo</title2>
 		<subtitle>Transcript or something</subtitle>
