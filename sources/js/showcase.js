@@ -1,7 +1,7 @@
 
 // GLOBAL FANCYBOX CONFIG VARIABLES
 var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgba(0,0,0,0.9)";
-
+var ROOT_PATH = "https://media.uwex.edu/";
 // WHEN THE PAGE IS LOADED
 $(document).ready(function(){
 
@@ -35,7 +35,7 @@ $(document).ready(function(){
 
 $.fn.checkTheme = function() {
 
-    var site = "https://mediastreamer.doit.wisc.edu/uwli-ltc/media/showcase/";
+    var site = ROOT_PATH + "media/showcase/";
     var logoImg = $("div.logo a img");
     var logoSrc, logoAlt;
 
@@ -259,7 +259,7 @@ $.fn.getVideo = function(ttl,sbttl,src) {
 
 	var w = 640, h = 360;
 
-	if (src.indexOf("mediastreamer") >= 0) {
+	if (src.indexOf("uwex") >= 0) {
 		h = 410;
 	}
 
