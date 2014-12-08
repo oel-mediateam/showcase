@@ -1,7 +1,7 @@
 
 // GLOBAL FANCYBOX CONFIG VARIABLES
 var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgba(0,0,0,0.9)";
-var ROOT_PATH = "https://media.uwex.edu/";
+var ROOT_PATH = "https://media.uwex.edu/content/";
 // WHEN THE PAGE IS LOADED
 $(document).ready(function(){
 
