@@ -1,7 +1,7 @@
 
 // GLOBAL FANCYBOX CONFIG VARIABLES
 var FB_PADDING = 0, FB_TOP_RATIO = 0.25, FB_CLOSE_CLICK = false, FB_OL_BG = "rgba(0,0,0,0.9)";
-var ROOT_PATH = "https://media.uwex.edu/content/";
+var ROOT_PATH = "https://media.uwex.edu/app/showcase_v1/";
 // WHEN THE PAGE IS LOADED
 $(document).ready(function(){
 
@@ -35,20 +35,20 @@ $(document).ready(function(){
 
 $.fn.checkTheme = function() {
 
-    var site = ROOT_PATH + "media/showcase/";
+    var site = ROOT_PATH;
     var logoImg = $("div.logo a img");
     var logoSrc, logoAlt;
 
     if ($("body").hasClass("smgt")) {
         FB_OL_BG = "rgba(225,225,220,0.95)";
-        logoSrc = "sources/img/smgt_logo.png";
+        logoSrc = "img/smgt_logo.png";
         logoAlt = "University of Wisconsin Sustainable Management";
     } else if ($("body").hasClass("hwm")) {
         FB_OL_BG = "rgba(0,101,164,0.9)";
-        logoSrc = "sources/img/hmw_logo.png";
+        logoSrc = "img/hmw_logo.png";
         logoAlt = "University of Wisconsin Health &amp; Wellness Management";
     } else {
-        logoSrc = "sources/img/uwex_ceoel_logo.png";
+        logoSrc = "img/uwex_ceoel_logo.png";
         logoAlt = "University of Wisconsin-Extension divison of Continuing Education, Outreach & and E-Learning";
     }
 
