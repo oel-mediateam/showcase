@@ -1,4 +1,4 @@
-Showcase
+Showcase - DEPRECATED
 ========
 
 An XML driven web application to show off exceptional projects whether they are video, audio, graphic design, infographic, web pages, etc.
